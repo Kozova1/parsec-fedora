@@ -5,7 +5,7 @@ wget https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
 sudo alien -r parsec-linux.deb
 rm -rf parsec-linux.deb
 parsec_file="$(ls *parsec*)"
-sudo rpm -i --force ${parsec_file}
+yes | sudo rpm -i --force ${parsec_file}
 rm -rf ~/${parsec-file}
 echo "Now use parsecd in the terminal to start parsec."
 echo "Enjoy Gaming!"
