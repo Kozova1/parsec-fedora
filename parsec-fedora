@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo dnf install libc6 libcairo2 libfreetype6 libgcc1 libgdk-pixbuf2.0-0 libgl1-mesa-glx libglib2.0-0 libgtk2.0-0 libpango-1.0-0 libpangocairo-1.0-0 libsndio6.1 libstdc++6 libx11-6 libxxf86vm
 sudo dnf install alien
 cd ~/
 wget https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
