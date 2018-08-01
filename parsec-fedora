@@ -6,6 +6,6 @@ sudo alien -r parsec-linux.deb
 rm -rf parsec-linux.deb
 parsec_file="$(ls *parsec*)"
 yes | sudo rpm -i --force ${parsec_file}
-rm -rf ~/${parsec-file}
+rm -rf ~/${parsec_file}
 echo "Now use parsecd in the terminal to start parsec."
 echo "Enjoy Gaming!"
