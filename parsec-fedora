@@ -8,7 +8,6 @@ if cat /etc/os-release | grep -q 'opensuse'; then
 else
   sudo dnf install alien
 fi
-#comment for commit
 wget -o parsec_tmp/parsec.deb https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
 sudo alien -r parsec_tmp/parsec.deb
 yes | sudo rpm -i --force parsec_tmp/parsec
