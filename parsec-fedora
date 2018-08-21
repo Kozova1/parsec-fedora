@@ -5,13 +5,16 @@ cd parsec_tmp
 if cat /etc/os-release | grep -q 'opensuse'; then
   wget http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/i586/alien-8.88-4.16.i586.rpm
   sudo zypper -n in debhelper
-  yes | sudo rpm -i --force alien*.rpm
+  alien_file=$(ls alien*)
+  yes | sudo rpm -i --force "${alien_file}"
 else
   sudo dnf install alien
 fi
 wget -o parsec.deb https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
 sudo alien -r parsec.deb
-yes | sudo rpm -i --force parsec*.rpm
+rm parsec.deb
+parsec_file=$(ls parsec*)
+yes | sudo rpm -i --force "${parsec_file}" 
 cd ../
 rm -rf parsec_tmp
 echo "Now use parsecd in the terminal to start parsec."
