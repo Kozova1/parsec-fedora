@@ -1,18 +1,14 @@
 #!/bin/bash
 if cat /etc/os-release | grep -q 'opensuse'; then
-  wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/X0F/openSUSE_Tumbleweed/x86_64/alien-8.88-4.1.x86_64.rpm
-  alien_file="$(ls *alien*)"
-  yes| sudo rpm -i --force ${alien_file}
-  rm -rf ${alien_file}
+  wget -o tmp/alien.rpm ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/X0F/openSUSE_Tumbleweed/x86_64/alien-8.88-4.1.x86_64.rpm
+  yes| sudo rpm -i --force tmp/alien.rpm
 else
   sudo dnf install alien
 fi
 cd ~/
-wget https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
-sudo alien -r parsec-linux.deb
-rm -rf parsec-linux.deb
-parsec_file="$(ls *parsec*)"
-yes | sudo rpm -i --force ${parsec_file}
-rm -rf ~/${parsec_file}
+wget -o tmp/parsec https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
+sudo alien -r tmp/parsec-linux.deb
+yes | sudo rpm -i --force tmp/parsec
+rm -rf tmp
 echo "Now use parsecd in the terminal to start parsec."
 echo "Enjoy Gaming!"
