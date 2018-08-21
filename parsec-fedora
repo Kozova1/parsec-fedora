@@ -3,8 +3,8 @@ cd ~/
 mkdir parsec_tmp
 cd parsec_tmp
 if cat /etc/os-release | grep -q 'opensuse'; then
-  wget http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/i586/alien-8.88-4.16.i586.rpm
   sudo zypper -n in debhelper
+  wget http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/i586/alien-8.88-4.16.i586.rpm
   alien_file=$(ls alien*)
   yes | sudo rpm -i --force "${alien_file}"
 else
