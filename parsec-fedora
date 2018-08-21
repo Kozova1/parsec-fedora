@@ -10,9 +10,9 @@ if cat /etc/os-release | grep -q 'opensuse'; then
 else
   sudo dnf install alien
 fi
-wget -o parsec.deb https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
-sudo alien -r parsec.deb
-rm parsec.deb
+wget https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
+sudo alien -r parsec-linux.deb
+sudo rm -rf parsec-linux.deb
 parsec_file=$(ls parsec*)
 yes | sudo rpm -i --force "${parsec_file}" 
 cd ../
