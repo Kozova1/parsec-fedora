@@ -1,8 +1,9 @@
 #!/bin/bash
 if cat /etc/os-release | grep -q 'opensuse'; then
-  sudo zypper addrepo http://download.opensuse.org/repositories/home:KAMiKAZOW/openSUSE_Leap_42.1/home:KAMiKAZOW.repo | echo 'a'
-  sudo zypper refresh
-  sudo zypper -n in alien
+  wget ftp://ftp.pbone.net/mirror/ftp5.gwdg.de/pub/opensuse/repositories/home:/X0F/openSUSE_Tumbleweed/x86_64/alien-8.88-4.1.x86_64.rpm
+  alien_file="$(ls *alien*)"
+  yes| sudo rpm -i --force ${alien_file}
+  rm -rf ${alien_file}
 else
   sudo dnf install alien
 fi
