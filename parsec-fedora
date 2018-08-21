@@ -1,5 +1,11 @@
 #!/bin/bash
-sudo dnf install alien
+if cat /etc/os-release | grep -q 'opensuse'; then
+  sudo zypper addrepo http://download.opensuse.org/repositories/home:KAMiKAZOW/openSUSE_Leap_42.1/home:KAMiKAZOW.repo | echo 'a'
+  sudo zypper refresh
+  sudo zypper -n in alien
+else
+  sudo dnf install alien
+fi
 cd ~/
 wget https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
 sudo alien -r parsec-linux.deb
