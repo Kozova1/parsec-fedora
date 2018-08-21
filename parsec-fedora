@@ -1,16 +1,18 @@
 #!/bin/bash
 cd ~/
 mkdir parsec_tmp
+cd parsec_tmp
 if cat /etc/os-release | grep -q 'opensuse'; then
-  wget -o parsec_tmp/alien.rpm http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/i586/alien-8.88-4.16.i586.rpm
+  wget http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/i586/alien-8.88-4.16.i586.rpm
   sudo zypper -n in debhelper
-  yes | sudo rpm -i --force parsec_tmp/alien.rpm
+  yes | sudo rpm -i --force alien*.rpm
 else
   sudo dnf install alien
 fi
-wget -o parsec_tmp/parsec.deb https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
-sudo alien -r parsec_tmp/parsec.deb
-yes | sudo rpm -i --force parsec_tmp/parsec
+wget -o parsec.deb https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
+sudo alien -r parsec.deb
+yes | sudo rpm -i --force parsec*.rpm
+cd ../
 rm -rf parsec_tmp
 echo "Now use parsecd in the terminal to start parsec."
 echo "Enjoy Gaming!"
