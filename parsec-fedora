@@ -23,6 +23,7 @@ else
   arch=$(uname -m)
   rpmrebuild -p --change-spec-whole='sed  "/\"\/\"\|\"\/usr\"\|\"\/usr\/bin\"/d"' --directory=. "${parsec_file}"
   sudo dnf -y install "${arch}"/"${parsec_file}"
+  echo "Note: run 'sudo dnf remove alien rpmrebuild' if you don't want to keep those packages after install."
 fi
 
 cd ../
