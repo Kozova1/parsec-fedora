@@ -1,32 +1,21 @@
 #!/bin/bash
-cd ~/ || exit 1
+cd ~/
 mkdir parsec_tmp
-cd parsec_tmp || exit 1
-
-isopensuse=$(grep -q 'opensuse' /etc/os-release)
-if isopensuse -eq 0; then
+cd parsec_tmp
+if cat /etc/os-release | grep -q 'opensuse'; then
   sudo zypper -n in debhelper
   wget http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/i586/alien-8.88-4.16.i586.rpm
   alien_file=$(ls alien*)
   yes | sudo rpm -i --force "${alien_file}"
 else
-  sudo dnf -y install alien rpmrebuild
+  sudo dnf install alien
 fi
-
 wget https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
 sudo alien -r parsec-linux.deb
-parsec_file=$(ls parsec*.rpm)
-
-if isopensuse -eq 0; then
-    yes | sudo rpm -i --force "${parsec_file}"
-else
-  arch=$(uname -m)
-  rpmrebuild -p --change-spec-whole='sed  "/\"\/\"\|\"\/usr\"\|\"\/usr\/bin\"/d"' --directory=. "${parsec_file}"
-  sudo dnf -y install "${arch}"/"${parsec_file}"
-  echo "Note: run 'sudo dnf remove alien rpmrebuild' if you don't want to keep those packages after install."
-fi
-
-cd ../ || exit 1
+sudo rm -rf parsec-linux.deb
+parsec_file=$(ls parsec*)
+yes | sudo rpm -i --force "${parsec_file}" 
+cd ../
 rm -rf parsec_tmp
 echo "Now use parsecd in the terminal to start parsec."
 echo "Enjoy Gaming!"
