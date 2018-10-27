@@ -1,7 +1,7 @@
 #!/bin/bash
-cd ~/
+cd ~/ || exit 1
 mkdir parsec_tmp
-cd parsec_tmp
+cd parsec_tmp || exit 1
 
 isopensuse=$(grep -q 'opensuse' /etc/os-release)
 if isopensuse -eq 0; then
@@ -26,7 +26,7 @@ else
   echo "Note: run 'sudo dnf remove alien rpmrebuild' if you don't want to keep those packages after install."
 fi
 
-cd ../
+cd ../ || exit 1
 rm -rf parsec_tmp
 echo "Now use parsecd in the terminal to start parsec."
 echo "Enjoy Gaming!"
