@@ -3,8 +3,9 @@ cd ~/ || exit 1
 mkdir parsec_tmp
 cd parsec_tmp || exit 1
 
-isopensuse=$(grep -q 'opensuse' /etc/os-release)
-if isopensuse -eq 0; then
+grep -q 'opensuse' /etc/os-release
+isopensuse=$?
+if [ $isopensuse -eq 0 ]; then
   sudo zypper -n in debhelper
   wget http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/i586/alien-8.88-4.16.i586.rpm
   alien_file=$(ls alien*)
@@ -17,7 +18,7 @@ wget https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb
 sudo alien -r parsec-linux.deb
 parsec_file=$(ls parsec*.rpm)
 
-if isopensuse -eq 0; then
+if [ $isopensuse -eq 0 ]; then
     yes | sudo rpm -i --force "${parsec_file}"
 else
   arch=$(uname -m)
