@@ -29,5 +29,7 @@ fi
 
 cd ../ || exit 1
 rm -rf parsec_tmp
-echo "Now use parsecd in the terminal to start parsec."
+echo "Now use parsecd in the terminal to start Parsec."
+echo "If you want to use hardware decoding on an integrated Intel GPU, please run the following command:"
+echo "sudo dnf install libva intel-vaapi-driver"
 echo "Enjoy Gaming!"
