@@ -1,4 +1,5 @@
 #!/bin/bash
+URI="http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/x86_64/alien-8.88-4.27.x86_64.rpm"
 cd ~/ || exit 1
 mkdir parsec_tmp
 cd parsec_tmp || exit 1
@@ -7,7 +8,7 @@ grep -q 'opensuse' /etc/os-release
 isopensuse=$?
 if [ $isopensuse -eq 0 ]; then
   sudo zypper -n in debhelper
-  wget http://download.opensuse.org/repositories/home:/Asukero/openSUSE_Tumbleweed/i586/alien-8.88-4.16.i586.rpm
+  wget "$URI"
   alien_file=$(ls alien*)
   yes | sudo rpm -i --force "${alien_file}"
 else
