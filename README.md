@@ -1,5 +1,5 @@
 # parsec-fedora
 Parsec port to fedora  
 # install with this command:
-`wget https://tinyurl.com/parsec-fedora ; bash parsec-fedora`  
+`curl -fsSL https://raw.githubusercontent.com/Kozova1/parsec-fedora/master/parsec-fedora | bash`  
 after installation restart your computer
